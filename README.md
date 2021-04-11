@@ -7,3 +7,6 @@
 
 Link for more info:
 https://docs.google.com/document/d/1yBS9zGXP2UJNDmC1trXopRtNCMnGG_yFhcMDxMUqZm4/edit#heading=h.g8et96v87kf5
+
+Group Schedule (Visual):
+https://www.preceden.com/timelines/728667-midterm-project-schedule
