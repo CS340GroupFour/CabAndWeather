@@ -1,5 +1,7 @@
 #include "Statistics.h"
 #include <math.h>
+#include <vector>
+
 namespace Statistics
 {
     double ComputeMean(int data[], int size)
@@ -15,6 +17,7 @@ namespace Statistics
 
         return result;
     }
+
     double ComputeMean(double data[], int size)
     {
         double result = 0.0;
@@ -25,6 +28,34 @@ namespace Statistics
         }
 
         result = result / size;
+
+        return result;
+    }
+
+    double ComputeMean(std::vector<int> data)
+    {
+        double result = 0.0;
+
+        for (int i = 0; i < data.size(); i++)
+        {
+            result += data[i];
+        }
+
+        result = result / data.size();
+
+        return result;
+    }
+
+    double ComputeMean(std::vector<double> data)
+    {
+        double result = 0.0;
+
+        for (int i = 0; i < data.size(); i++)
+        {
+            result += data[i];
+        }
+
+        result = result / data.size();
 
         return result;
     }
@@ -59,6 +90,40 @@ namespace Statistics
         }
 
         result = sqrt(sum / (size - 1.0));
+
+        return result;
+    }
+
+    double ComputeSTD(std::vector<int> data)
+    {
+        // STD = sqrt( sum(xi - mean)^2  /  (n-1) )
+        double result = 0.0;
+        double sum = 0.0;
+        double mean = ComputeMean(data);
+
+        for (int i = 0; i < data.size(); i++)
+        {
+            sum += pow((data[i] - mean), 2);
+        }
+
+        result = sqrt(sum / (data.size() - 1.0));
+
+        return result;
+    }
+
+    double ComputeSTD(std::vector<double> data)
+    {
+        // STD = sqrt( sum(xi - mean)^2  /  (n-1) )
+        double result = 0.0;
+        double sum = 0.0;
+        double mean = ComputeMean(data);
+
+        for (int i = 0; i < data.size(); i++)
+        {
+            sum += pow((data[i] - mean), 2);
+        }
+
+        result = sqrt(sum / (data.size() - 1.0));
 
         return result;
     }
