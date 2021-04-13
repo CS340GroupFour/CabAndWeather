@@ -127,4 +127,14 @@ namespace Statistics
 
         return result;
     }
+
+    double ttest(std::vector<double> left, std::vector<double> right)
+    {
+        // t = ( mean(a) - mean(b) ) / sqrt( (std(a)^2/size(a)) + (std(b)^2/size(b)) )
+        double result = 0.0;
+
+        result = (ComputeMean(left) - ComputeMean(right)) / sqrt( (pow(ComputeSTD(left),2)/left.size()) + (pow(ComputeSTD(right), 2) / right.size()) );
+
+        return result;
+    }
 }
