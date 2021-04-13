@@ -5,6 +5,16 @@
   - [ ] Project Demo. **Deadline: Thursday, April 15**
   - [ ] Video summary. **Deadline: Monday, April 19**
 
+# Build and Run application
+1) Add data file to the folder.
+   - Download the Uber & Lyft Cab data
+   - Move the data to the Data folder in Application/Application/Data
+2) Compile
+    - **NOTE: must compile all .cpp files**
+      - Example: g++ -o Application ./Main.cpp ./Statistics.cpp
+4) Run
+     - Example: ./Application
+
 Link for Uber & Lyft Cab prices:
 https://www.kaggle.com/ravi72munde/uber-lyft-cab-prices?select=cab_rides.csv
 
