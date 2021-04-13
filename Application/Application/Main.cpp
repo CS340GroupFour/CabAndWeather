@@ -5,7 +5,8 @@
 #include <fstream>
 #include <cstring>
 #include <cstdio>
-#include "cabStructx.h"
+//#include "cabStructx.h"
+
 
 
 //struct for Cab, we can separate this later as a header file as you see on line 8
@@ -45,7 +46,7 @@ int main()
     char rowLine[5000];
     //sets cabData
     fgets(rowLine, 1024, cabData);
-    const char *split 
+    const char *split =",";
 	    
     //separates each row for every new line
     for(char c = getc(cabData); c!= EOF; c=getc(cabData)){
