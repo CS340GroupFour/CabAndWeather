@@ -1,5 +1,5 @@
-#include <iostream>
-
+#include "Statistics.h"
+#include <math.h>
 namespace Statistics
 {
     double ComputeMean(int data[], int size)
