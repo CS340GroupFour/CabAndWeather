@@ -1,142 +1,83 @@
 #include <iostream>
-#include <fstream> //read and save to file
+#include <sstream>
 #include <string>
+#include <vector>
+#include <fstream>
+#include <cstring>
+#include <cstdio>
+#include "cabStructx.h"
 
+
+//struct for Cab, we can separate this later as a header file as you see on line 8
+typedef struct{
+    char citySource[25]{};
+    char cityDest[25]{};
+    char cabBrand[4]{};
+    char cabType[12]{};
+    char identifier[40]{};
+    char prod_id[15]{};
+    double surgeMultiplier = 0.0;
+    int time = 0;
+    double distance = 0.0;
+    double price;
+} Cab;
+
+//Global variable j to determine cab size later on
+int j = 1;
 
 int main()
-{
-	std::string cabRidePath = "./Data/cab_rides.txt";
-	std::string weatherPath = "./Data/weather.txt";
+{	
+    //Initializes cabData pointer and uses it to open the file
+    FILE *cabData;
+    // "r" means to read the file -- ALSO the file path has to absolute so :)
+    cabData = fopen("F:/SP2021/CSC 340/untitled/test.csv", "r");
 
-	std::fstream cabRideStream;
-	std::fstream weatherStream;
-
-	std::string linestr; // Used to temporary store data from stream.
-
-	weatherStream.open(weatherPath);
-	cabRideStream.open(cabRidePath);
+    //just file open validation
+    if (cabData == NULL)
+    {
+        printf("Not successful");
+    }
 	
-	if (weatherStream.fail())  
-	{
-		std::cerr << "Failed to open the file: " << weatherPath << std::endl;
-		return(-1);
-	}
+    //kind of resets the cabData	
+    rewind(cabData);
 
-	std::cout << "Success on opening the file: " << weatherPath << std::endl;
-
-	if (cabRideStream.fail())
-	{
-		std::cerr << "Failed to open the file: " << cabRideStream.fail() << std::endl;
-		return(-1);
-	}
-	std::cout << "Success on opening the file: " << cabRidePath << std::endl;
+    //Just a limiter, I'd have to fix this later or find a more efficient way
+    char rowLine[5000];
+    //sets cabData
+    fgets(rowLine, 1024, cabData);
+    const char *split 
+	    
+    //separates each row for every new line
+    for(char c = getc(cabData); c!= EOF; c=getc(cabData)){
+        if(c=='\n'){
+            j++;
+        }
+    }
 	
-	/*
-	string cabPath;
-	string weatherPath;	
-
-	fstream cabStream;
-	fstream weatherStream;
-
-	cabStream.open(cabPath);
-	weatherStream.open(weatherPath);
-
-	if(cabStream.fail()) { // print fail message }
-	if(weatherStream.fail()) { // print fail message }
-
-	// parse to object. Question: sequential or random access?
-	CabRide[] cabRideArray;
-	Weather[] weatherArray;
+	//j+1 is a safety net for the cabs struct array parameter
+    Cab cabs[j+1];
 	
-	while(cabStream) { line => cabRideArray.pushback( CabRide() ) }
-	while(weatherStream) { line => cabRideArray.pushback( Weather() ) }
+	//reads back to the start of the file
+    rewind(cabData);
+
+	//assigns each data onto its corresponding struct attributes or whatever it's called
+    while(fgets(rowLine, 1024, (FILE*)cabData) != NULL){
+        cabs[i].distance = atoi(strtok(rowLine, split));
+        strcpy(cabs[i].cabBrand, strtok(NULL, split));
+        cabs[i].time = atoi(strtok(NULL, split));
+        strcpy(cabs[i].cityDest, strtok(NULL, split));
+        strcpy(cabs[i].citySource, strtok(NULL, split));
+        cabs[i].price = atoi(strtok(NULL, split));
+        cabs[i].surgeMultiplier = atoi(strtok(NULL, split));
+        strcpy(cabs[i].identifier, strtok(NULL, split));
+        strcpy(cabs[i].prod_id, strtok(NULL, split));
+        strcpy(cabs[i].cabType, strtok(NULL, split));
+        i++;
+    }
 	
-	// Preparation
-	// Maybe sort weatherArray by time_stamp
-	
-	// Connect data sets (Cab and Weather)
-	foreach(Cab) {
-		weatherArray.findClosestTimeStamp(cabStream.time_stamp AND Location/Destination); // TODO: find the
-	}
-
-	// Application interface
-	cout << "Welcome to Cab and Weather" << endl;
-	cout << "Menu:" << endl;
-	cout << "a - Data result" << endl;
-	cout << "b - Average sample for ___" << endl;
-	cout << "c - Sample STD for ___" << endl;
-	cout << "exit - Terminate program" << endl;
-	
-	string userInput
-	do
-	{
-		cin >> input;
-		perform(input);
-	}while(input != "exit")
-}
-
-void perform(string input)
-{
-	if(input == "a")
-	{
-		// Do operation here
-	}
-	.
-	.
-	.
-	else
-	{
-		cout << "Command not found." << endl;
-	}
-}
+	//closes the file
+    fclose(cabData);
 
 
-
-class SampleCollection
-{
-	public:
-		Add(Sample);
-		GetAvg();
-		GetAvg(...);
-		GetSTD();
-		GetSTD(...);
-		.
-		.
-		.
-	private:
-		Sample sample;
-}
-
-struct Sample
-{
-	Weather weather;
-	CabRide cabRide;
-}
-
-struct Weather
-{
-	unsigned int time_stamp;
-	Location location;
-	.
-	.
-	.
-}
-
-struct CabRide
-{
-	unsigned int time_stamp;
-	Location source;
-	Location destination;
-	.
-	.
-	.
-}
-
-enum Location
-{
-}
-	*/
-
-
-	return 0;
+    return 0;
 }
