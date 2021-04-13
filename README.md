@@ -15,11 +15,11 @@
 4) Run
      - Example: ./Application
 
-Link for Uber & Lyft Cab prices:
-https://www.kaggle.com/ravi72munde/uber-lyft-cab-prices?select=cab_rides.csv
+# Links:
+[for Uber & Lyft Cab prices](https://www.kaggle.com/ravi72munde/uber-lyft-cab-prices?select=cab_rides.csv)
 
-Link for more info:
-https://docs.google.com/document/d/1yBS9zGXP2UJNDmC1trXopRtNCMnGG_yFhcMDxMUqZm4/edit#heading=h.g8et96v87kf5
+[Student T test for data comparison](https://www.khanacademy.org/math/ap-statistics/two-sample-inference/two-sample-t-test-means/v/alternative-hypothesis-for-2-sample-t-test)
 
-Group Schedule (Visual):
-https://www.preceden.com/timelines/728667-midterm-project-schedule
+[Assignment due dates](https://docs.google.com/document/d/1yBS9zGXP2UJNDmC1trXopRtNCMnGG_yFhcMDxMUqZm4/edit#heading=h.g8et96v87kf5)
+
+[Group Schedule (Visual)](https://www.preceden.com/timelines/728667-midterm-project-schedule)
