@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream> //read and save to file
 #include <string>
-
+#include "Statistics.h"
 
 int main()
 {
