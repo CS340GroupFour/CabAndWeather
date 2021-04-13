@@ -13,6 +13,7 @@ namespace Statistics
     double ComputeSTD(int data[], int size);
     double ComputeSTD(std::vector<int> data);
     double ComputeSTD(std::vector<double> data);
+    double Ttest(std::vector<double> left, std::vector<double> right);
 };
 
     // Below are the code example for testing:

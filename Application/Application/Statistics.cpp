@@ -128,7 +128,7 @@ namespace Statistics
         return result;
     }
 
-    double ttest(std::vector<double> left, std::vector<double> right)
+    double Ttest(std::vector<double> left, std::vector<double> right)
     {
         // t = ( mean(a) - mean(b) ) / sqrt( (std(a)^2/size(a)) + (std(b)^2/size(b)) )
         double result = 0.0;
