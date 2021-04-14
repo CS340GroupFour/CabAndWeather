@@ -1,76 +1,81 @@
 #include "Cabs.h"
 
-void Cabs::sortCab(vector<Cabs> cabRides, vector<Cabs> onlyUber, vector<Cabs> onlyLyft) {
+const string &Cabs::getCitySource() const {
+    return citySource;
+}
 
-    cabAtts();
-    ifstream myfile1;
-    myfile1.open("cab_rides.csv", ios::in);
+void Cabs::setCitySource(const string &citySource) {
+    Cabs::citySource = citySource;
+}
 
-    string line;
+const string &Cabs::getCityDest() const {
+    return cityDest;
+}
 
-    int lineCount = 0;
-    getline(myfile1, line); // ignore header line
+void Cabs::setCityDest(const string &cityDest) {
+    Cabs::cityDest = cityDest;
+}
 
-    Cabs inv;
+const string &Cabs::getCabBrand() const {
+    return cabBrand;
+}
 
-    while (getline(myfile1, line) && !line.empty()) {
-        stringstream mystream(line);
+void Cabs::setCabBrand(const string &cabBrand) {
+    Cabs::cabBrand = cabBrand;
+}
 
-        string temp;
+const string &Cabs::getCabType() const {
+    return cabType;
+}
 
+void Cabs::setCabType(const string &cabType) {
+    Cabs::cabType = cabType;
+}
 
-        getline(mystream, temp, ',');
-        if (temp.empty()) {
-            temp = 0.000;
-        } else {
-            inv.distance = stod(temp);
-        }
+const string &Cabs::getIdentifier() const {
+    return identifier;
+}
 
-        getline(mystream, inv.cabBrand, ',');
+void Cabs::setIdentifier(const string &identifier) {
+    Cabs::identifier = identifier;
+}
 
-        getline(mystream, temp, ',');
-        if (temp.empty()) {
-            inv.time = 0.000;
-        } else {
-            inv.time = stod(temp);
-        }
+const string &Cabs::getProdId() const {
+    return prod_id;
+}
 
+void Cabs::setProdId(const string &prodId) {
+    prod_id = prodId;
+}
 
-        getline(mystream, inv.cityDest, ',');
-        getline(mystream, inv.citySource, ',');
+double Cabs::getSurgeMultiplier() const {
+    return surgeMultiplier;
+}
 
-        getline(mystream, temp, ',');
-        if (temp.empty()) {
-            inv.price = 0.000;
-        } else {
-            inv.price = stod(temp);
-        }
+void Cabs::setSurgeMultiplier(double surgeMultiplier) {
+    Cabs::surgeMultiplier = surgeMultiplier;
+}
 
-        getline(mystream, temp, ',');
-        if (temp.empty()) {
-            inv.surgeMultiplier = 0.000;
-        } else {
-            inv.surgeMultiplier = stod(temp);
-        }
+double Cabs::getTime() const {
+    return time;
+}
 
-        getline(mystream, inv.identifier, ',');
-        getline(mystream, inv.prod_id, ',');
-        getline(mystream, inv.cabType, ',');
+void Cabs::setTime(double time) {
+    Cabs::time = time;
+}
 
+double Cabs::getDistance() const {
+    return distance;
+}
 
-        if (!mystream) {
-            break;
-        }
+void Cabs::setDistance(double distance) {
+    Cabs::distance = distance;
+}
 
-        cabRides.push_back(inv);
-        if (inv.cabBrand == "Lyft") {
-            onlyLyft.push_back(inv);
-        }
-        if (inv.cabBrand == "Uber") {
-            onlyUber.push_back(inv);
-        }
+double Cabs::getPrice() const {
+    return price;
+}
 
-
-        lineCount++;
-    }
+void Cabs::setPrice(double price) {
+    Cabs::price = price;
 }
