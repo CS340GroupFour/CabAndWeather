@@ -1,82 +1,65 @@
-#include "sortWeather.h"
+#include "Weather.h"
 
-using namespace std;
+const string &Weather::getLocation() const {
+    return location;
+}
 
-namespace sortWeatherComputation {
-    void sortWeather(vector<Weather>& weather, vector<Weather>& badWeather, vector<Weather>& goodWeather, string& line1, int& lineCount1) {
-        Weather inv1;
+void Weather::setLocation(const string &location) {
+    Weather::location = location;
+}
 
-        stringstream mystream1(line1);
+double Weather::getClouds() const {
+    return clouds;
+}
 
-        string temp1;
+void Weather::setClouds(double clouds) {
+    Weather::clouds = clouds;
+}
 
-        getline(mystream1, temp1, ',');
-        if (temp1.empty()) {
-            inv1.setTemperature(0.00);
-        } else {
-            inv1.setTemperature(stod(temp1));
-        }
+double Weather::getPressure() const {
+    return pressure;
+}
 
-        getline(mystream1, temp1, ',');
-        inv1.setLocation(temp1);
+void Weather::setPressure(double pressure) {
+    Weather::pressure = pressure;
+}
 
+double Weather::getWind() const {
+    return wind;
+}
 
-        getline(mystream1, temp1, ',');
-        if (temp1.empty()) {
-            inv1.setClouds(0.000);
-        } else {
-            inv1.setClouds(stod(temp1));
-        }
+void Weather::setWind(double wind) {
+    Weather::wind = wind;
+}
 
-        getline(mystream1, temp1, ',');
-        if (temp1.empty()) {
-            inv1.setPressure(0.000);
-        } else {
-            inv1.setPressure(stod(temp1));
-        }
+double Weather::getTemperature() const {
+    return temperature;
+}
 
-        getline(mystream1, temp1, ',');
-        if (temp1.empty()) {
-            inv1.setRain(0.000);
-        } else {
-            inv1.setRain(stod(temp1));
-        }
+void Weather::setTemperature(double temperature) {
+    Weather::temperature = temperature;
+}
 
-        getline(mystream1, temp1, ',');
-        if (temp1.empty()) {
-            inv1.setWtime(0);
-        } else {
-            inv1.setWtime(stod(temp1));
-        }
+double Weather::getRain() const {
+    return rain;
+}
 
-        getline(mystream1, temp1, ',');
-        if (temp1.empty()) {
-            inv1.setHumidity(0.000);
-        } else {
-            inv1.setHumidity(stod(temp1));
-        }
+void Weather::setRain(double rain) {
+    Weather::rain = rain;
+}
 
-        getline(mystream1, temp1, ',');
-        if (temp1.empty()) {
-            inv1.setWind(0.000);
-        } else {
-            inv1.setWind(stod(temp1));
-        }
+long int Weather::getWtime() const {
+    return wtime;
+}
 
-        int j = 0;
-        j = inv1.getWtime()/100;
+void Weather::setWtime(long int wtime) {
+    Weather::wtime = wtime;
+}
 
-        inv1.setWtime(j);
+double Weather::getHumidity() const {
+    return humidity;
+}
 
-        weather.push_back(inv1);
-        if (inv1.getRain() <= 0.20) {
-
-            goodWeather.push_back(inv1);
-        }
-        if (inv1.getRain() > 0.20) {
-            badWeather.push_back(inv1);
-        }
-
-        lineCount1++;
-    }
+void Weather::setHumidity(double humidity) {
+    Weather::humidity = humidity;
 }
