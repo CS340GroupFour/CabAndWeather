@@ -6,213 +6,234 @@
 
 using namespace std;
 
-class Weather{
+class Cabs{
 protected:
+    string citySource;
+    string cityDest;
+    string cabBrand;
+    string cabType;
+    string identifier;
+    string prod_id;
+    double surgeMultiplier;
 public:
-    const string &getLocation() const;
+    const string &getCitySource() const;
 
-    void setLocation(const string &location);
+    void setCitySource(const string &citySource);
 
-    double getClouds() const;
+    const string &getCityDest() const;
 
-    void setClouds(double clouds);
+    void setCityDest(const string &cityDest);
 
-    double getPressure() const;
+    const string &getCabBrand() const;
 
-    void setPressure(double pressure);
+    void setCabBrand(const string &cabBrand);
 
-    double getWind() const;
+    const string &getCabType() const;
 
-    void setWind(double wind);
+    void setCabType(const string &cabType);
 
-    double getTemperature() const;
+    const string &getIdentifier() const;
 
-    void setTemperature(double temperature);
+    void setIdentifier(const string &identifier);
 
-    double getRain() const;
+    const string &getProdId() const;
 
-    void setRain(double rain);
+    void setProdId(const string &prodId);
 
-    double getWtime() const;
+    double getSurgeMultiplier() const;
 
-    void setWtime(double wtime);
+    void setSurgeMultiplier(double surgeMultiplier);
 
-    double getHumidity() const;
+    double getTime() const;
 
-    void setHumidity(double humidity);
+    void setTime(double time);
+
+    double getDistance() const;
+
+    void setDistance(double distance);
+
+    double getPrice() const;
+
+    void setPrice(double price);
 
 protected:
-    string location;
-    double clouds;
-    double pressure;
-    double wind;
-    double temperature;
-    double rain;
-    double wtime;
-    double humidity;
+    double time;
+    double distance;
+    double price;
 
-    void weatherAtts();
+    void cabAtts();
 
 public:
-    void sortWeather();
+    void sortCab ();
+
 };
-void Weather::weatherAtts() {
-    location = "";
-    clouds = 0.00;
-    pressure = 0.00;
-    wind = 0.00;
-    temperature = 0.00;
-    rain = 0.00;
-    wtime = 0.00;
-    humidity = 0.00;
+void Cabs::cabAtts() {
+    citySource = "";
+    cityDest= "";
+    cabBrand= "";
+    cabType= "";
+    identifier= "";
+    prod_id= "";
+    surgeMultiplier = 0.00;
+    time = 0.00;
+    distance = 0.00;
+    price = 0.00;
 }
-void Weather::sortWeather() {
-    weatherAtts();
-    ifstream myfile2;
-    myfile2.open("weather.csv", ios::in);
+void Cabs::sortCab() {
 
-    string line1;
+    cabAtts();
+    ifstream myfile1;
+    myfile1.open("cab_rides.csv", ios::in);
 
-    std::vector<Weather> weather;
+    string line;
 
-    int lineCount1 = 0;
-    getline(myfile2, line1); // ignore header line
+    std::vector<Cabs> cabRides;
+    std::vector<Cabs> onlyUber;
+    std::vector<Cabs> onlyLyft;
 
-    Weather inv1;
+    int lineCount = 0;
+    getline(myfile1, line); // ignore header line
 
-    while (getline(myfile2, line1) && !line1.empty())
-    {
-        stringstream mystream1(line1);
+    Cabs inv;
 
-        string temp1;
+    while (getline(myfile1, line) && !line.empty()) {
+        stringstream mystream(line);
 
-        getline(mystream1, temp1, ',');
-        if(temp1.empty()){
-            inv1.temperature = 0.000;
-        }
-        else{
-            inv1.temperature = stod(temp1);
-        }
+        string temp;
 
-        getline(mystream1, inv1.location, ',');
 
-        getline(mystream1, temp1, ',');
-        if(temp1.empty()){
-            inv1.clouds = 0.000;
-        }
-        else {
-            inv1.clouds = stod(temp1);
+        getline(mystream, temp, ',');
+        if (temp.empty()) {
+            temp = 0.000;
+        } else {
+            inv.distance = stod(temp);
         }
 
-        getline(mystream1, temp1, ',');
-        if(temp1.empty()){
-            inv1.pressure = 0.000;
-        }
-        else {
-            inv1.pressure = stod(temp1);
+        getline(mystream, inv.cabBrand, ',');
+
+        getline(mystream, temp, ',');
+        if (temp.empty()) {
+            inv.time = 0.000;
+        } else {
+            inv.time = stod(temp);
         }
 
-        getline(mystream1, temp1, ',');
-        if(temp1.empty()){
-            inv1.rain = 0.000;
-        }
-        else {
-            inv1.rain = stod(temp1);
+
+        getline(mystream, inv.cityDest, ',');
+        getline(mystream, inv.citySource, ',');
+
+        getline(mystream, temp, ',');
+        if (temp.empty()) {
+            inv.price = 0.000;
+        } else {
+            inv.price = stod(temp);
         }
 
-        getline(mystream1, temp1, ',');
-        if(temp1.empty()){
-            inv1.wtime = 0.000;
-        }
-        else {
-            inv1.wtime = stod(temp1);
-        }
-
-        getline(mystream1, temp1, ',');
-        if(temp1.empty()){
-            inv1.humidity = 0.000;
-        }
-        else {
-            inv1.humidity = stod(temp1);
+        getline(mystream, temp, ',');
+        if (temp.empty()) {
+            inv.surgeMultiplier = 0.000;
+        } else {
+            inv.surgeMultiplier = stod(temp);
         }
 
-        getline(mystream1, temp1, ',');
-        if(temp1.empty()){
-            inv1.wind = 0.000;
-        }
-        else {
-            inv1.wind = stod(temp1);
-        }
+        getline(mystream, inv.identifier, ',');
+        getline(mystream, inv.prod_id, ',');
+        getline(mystream, inv.cabType, ',');
 
-        if (!mystream1)
+
+        if (!mystream) {
             break;
+        }
 
-        weather.push_back(inv1);
-        lineCount1++;
+        cabRides.push_back(inv);
+        if (inv.cabBrand == "Lyft") {
+            onlyLyft.push_back(inv);
+        }
+        if (inv.cabBrand == "Uber") {
+            onlyUber.push_back(inv);
+        }
+
+
+        lineCount++;
     }
-
 }
 
-const string &Weather::getLocation() const {
-    return location;
+const string &Cabs::getCitySource() const {
+    return citySource;
 }
 
-void Weather::setLocation(const string &location) {
-    Weather::location = location;
+void Cabs::setCitySource(const string &citySource) {
+    Cabs::citySource = citySource;
 }
 
-double Weather::getClouds() const {
-    return clouds;
+const string &Cabs::getCityDest() const {
+    return cityDest;
 }
 
-void Weather::setClouds(double clouds) {
-    Weather::clouds = clouds;
+void Cabs::setCityDest(const string &cityDest) {
+    Cabs::cityDest = cityDest;
 }
 
-double Weather::getPressure() const {
-    return pressure;
+const string &Cabs::getCabBrand() const {
+    return cabBrand;
 }
 
-void Weather::setPressure(double pressure) {
-    Weather::pressure = pressure;
+void Cabs::setCabBrand(const string &cabBrand) {
+    Cabs::cabBrand = cabBrand;
 }
 
-double Weather::getWind() const {
-    return wind;
+const string &Cabs::getCabType() const {
+    return cabType;
 }
 
-void Weather::setWind(double wind) {
-    Weather::wind = wind;
+void Cabs::setCabType(const string &cabType) {
+    Cabs::cabType = cabType;
 }
 
-double Weather::getTemperature() const {
-    return temperature;
+const string &Cabs::getIdentifier() const {
+    return identifier;
 }
 
-void Weather::setTemperature(double temperature) {
-    Weather::temperature = temperature;
+void Cabs::setIdentifier(const string &identifier) {
+    Cabs::identifier = identifier;
 }
 
-double Weather::getRain() const {
-    return rain;
+const string &Cabs::getProdId() const {
+    return prod_id;
 }
 
-void Weather::setRain(double rain) {
-    Weather::rain = rain;
+void Cabs::setProdId(const string &prodId) {
+    prod_id = prodId;
 }
 
-double Weather::getWtime() const {
-    return wtime;
+double Cabs::getSurgeMultiplier() const {
+    return surgeMultiplier;
 }
 
-void Weather::setWtime(double wtime) {
-    Weather::wtime = wtime;
+void Cabs::setSurgeMultiplier(double surgeMultiplier) {
+    Cabs::surgeMultiplier = surgeMultiplier;
 }
 
-double Weather::getHumidity() const {
-    return humidity;
+double Cabs::getTime() const {
+    return time;
 }
 
-void Weather::setHumidity(double humidity) {
-    Weather::humidity = humidity;
+void Cabs::setTime(double time) {
+    Cabs::time = time;
+}
+
+double Cabs::getDistance() const {
+    return distance;
+}
+
+void Cabs::setDistance(double distance) {
+    Cabs::distance = distance;
+}
+
+double Cabs::getPrice() const {
+    return price;
+}
+
+void Cabs::setPrice(double price) {
+    Cabs::price = price;
 }
