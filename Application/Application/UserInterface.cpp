@@ -4,17 +4,24 @@
 
 namespace UserInterface
 {
-    std::string menuOptions= 
+    std::string introOptions=
+    "1 - Introduction\n"
+    "2 - Learn about T test\n"
+    "3 - Perform calculation on sample\n"
+    "4 - About us\n"
+    "q - Quit\n";
+
+    std::string sampleOptions= 
     "1 - Full sample\n"
     "2 - Uber sample\n"
     "3 - Lyft sample\n"
     "4 - Rainy weather sample\n"
     "5 - Nice weather sample\n"
     "q - Quit\n";
+
     std::string mathOptions =
-    "1 - Calculate sample mean\n"
-    "2 - Calculate sample standard deviation\n"
-    "3 - Calculate Student T test\n"
+    "1 - Single sample\n"
+    "2 - 2 sample T-test\n"
     "q - Quit\n";
 
     void WelcomeAndIntroduce()
@@ -38,6 +45,7 @@ namespace UserInterface
 
         return tolower(userInput);
     }
+
     bool IsValidMenuOption(char c)
     {
         char input = tolower(c);
@@ -49,24 +57,51 @@ namespace UserInterface
                 input == 'q';
     }
 
-    void CallMenuFunction(char c)
+    void CallMainMenuFunction(char c)
+    {
+        char userInput;
+        switch(c)
+        {
+            case '1':
+                std::cout << "FIXME: Calling Menu function 1" << std::endl;
+                break;
+            case '2':
+                std::cout << "FIXME: Calling Menu function 2" << std::endl;
+                break;
+            case '3':
+                userInput = PrintMenu(mathOptions);
+                CallMathFunction(userInput);
+                break;
+            case '4':
+                std::cout << "FIXME: Calling Menu function 4" << std::endl;
+                break;
+            case '5':
+                std::cout << "FIXME: Calling Menu function 5" << std::endl;
+                break;
+            case 'q':
+                std::cout << "Exiting the program" << std::endl;
+                break;
+        }
+    }
+
+    void CallSampleMenuFunction(char c)
     {   
         switch(c)
         {
             case '1':
-                std::cout << "FIXME: Calling Menu function a" << std::endl;
+                std::cout << "FIXME: Calling Menu function 1" << std::endl;
                 break;
             case '2':
-                std::cout << "FIXME: Calling Menu function b" << std::endl;
+                std::cout << "FIXME: Calling Menu function 2" << std::endl;
                 break;
             case '3':
-                std::cout << "FIXME: Calling Menu function c" << std::endl;
+                std::cout << "FIXME: Calling Menu function 3" << std::endl;
                 break;
             case '4':
-                std::cout << "FIXME: Calling Menu function d" << std::endl;
+                std::cout << "FIXME: Calling Menu function 4" << std::endl;
                 break;
             case '5':
-                std::cout << "FIXME: Calling Menu function e" << std::endl;
+                std::cout << "FIXME: Calling Menu function 5" << std::endl;
                 break;
             case 'q':
                 std::cout << "Exiting the program" << std::endl;
@@ -76,13 +111,16 @@ namespace UserInterface
 
     void CallMathFunction(char c)
     {
+        char userInput;
         switch(c)
         {
             case '1':
-                std::cout << "FIXME: Calling Math function 1" << std::endl;
+                userInput = PrintMenu(sampleOptions);
+                CallSampleMenuFunction(userInput);
                 break;
             case '2':
-                std::cout << "FIXME: Calling Math function 2" << std::endl;
+                userInput = PrintMenu(sampleOptions);
+                CallSampleMenuFunction(userInput);
                 break;
             case '3':
                 std::cout << "FIXME: Calling Math function 3" << std::endl;
