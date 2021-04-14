@@ -8,12 +8,14 @@ class UserInterface
     std::string introOptions;
     std::string sampleOptions;
     std::string mathOptions;
+    std::string mainMenuOrExit;
     void WelcomeAndIntroduce();
     char PrintMenu(std::string options);
     bool IsValidMenuOption(char c);
     void CallMainMenuFunction(char c);
     void CallSampleMenuFunction(char c);
     void CallMathFunction(char c);
+    void CallMainMenuOrExitFunction(char c);
     UserInterface(); // Don't recommend using this. Should only be used for testing
 
     // TODO: Uncomment this after cabs is implemented properly

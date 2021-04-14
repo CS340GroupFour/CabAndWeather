@@ -26,6 +26,10 @@ UserInterface::UserInterface()
     "1 - Single sample\n"
     "2 - 2 sample T-test\n"
     "q - Quit\n";
+
+    mainMenuOrExit =
+    "1 - Main Menu\n"
+    "q - Quit\n";
 }
 
 void UserInterface::WelcomeAndIntroduce()
@@ -68,9 +72,13 @@ void UserInterface::CallMainMenuFunction(char c)
     {
         case '1':
             std::cout << "FIXME: Calling Menu function 1" << std::endl;
+            userInput = PrintMenu(mainMenuOrExit);
+            CallMainMenuOrExitFunction(userInput);
             break;
         case '2':
             std::cout << "FIXME: Calling Menu function 2" << std::endl;
+            userInput = PrintMenu(mainMenuOrExit);
+            CallMainMenuOrExitFunction(userInput);
             break;
         case '3':
             userInput = PrintMenu(mathOptions);
@@ -78,6 +86,8 @@ void UserInterface::CallMainMenuFunction(char c)
             break;
         case '4':
             std::cout << "FIXME: Calling Menu function 4" << std::endl;
+            userInput = PrintMenu(mainMenuOrExit);
+            CallMainMenuOrExitFunction(userInput);
             break;
         case '5':
             std::cout << "FIXME: Calling Menu function 5" << std::endl;
@@ -125,6 +135,33 @@ void UserInterface::CallMathFunction(char c)
         case '2':
             userInput = PrintMenu(sampleOptions);
             CallSampleMenuFunction(userInput);
+            break;
+        case '3':
+            std::cout << "FIXME: Calling Math function 3" << std::endl;
+            break;
+        case '4':
+            std::cout << "FIXME: Calling Math function 4" << std::endl;
+            break;
+        case '5':
+            std::cout << "FIXME: Calling Math function 5" << std::endl;
+            break;
+        case 'q':
+            std::cout << "Exiting the program" << std::endl;
+            break;
+    }
+}
+
+void UserInterface::CallMainMenuOrExitFunction(char c)
+{
+    char userInput;
+    switch(c)
+    {
+        case '1':
+            userInput = PrintMenu(introOptions);
+            CallMainMenuFunction(userInput);
+            break;
+        case '2':
+            std::cout << "FIXME: Calling Math function 2" << std::endl;
             break;
         case '3':
             std::cout << "FIXME: Calling Math function 3" << std::endl;
