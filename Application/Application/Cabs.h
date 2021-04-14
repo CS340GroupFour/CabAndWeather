@@ -15,48 +15,6 @@ protected:
     string identifier;
     string prod_id;
     double surgeMultiplier;
-public:
-    const string &getCitySource() const;
-
-    void setCitySource(const string &citySource);
-
-    const string &getCityDest() const;
-
-    void setCityDest(const string &cityDest);
-
-    const string &getCabBrand() const;
-
-    void setCabBrand(const string &cabBrand);
-
-    const string &getCabType() const;
-
-    void setCabType(const string &cabType);
-
-    const string &getIdentifier() const;
-
-    void setIdentifier(const string &identifier);
-
-    const string &getProdId() const;
-
-    void setProdId(const string &prodId);
-
-    double getSurgeMultiplier() const;
-
-    void setSurgeMultiplier(double surgeMultiplier);
-
-    double getTime() const;
-
-    void setTime(double time);
-
-    double getDistance() const;
-
-    void setDistance(double distance);
-
-    double getPrice() const;
-
-    void setPrice(double price);
-
-protected:
     double time;
     double distance;
     double price;
@@ -64,7 +22,29 @@ protected:
     void cabAtts();
 
 public:
-    void sortCab ();
+    const string &getCitySource() const;
+    void setCitySource(const string &citySource);
+    const string &getCityDest() const;
+    void setCityDest(const string &cityDest);
+    const string &getCabBrand() const;
+    void setCabBrand(const string &cabBrand);
+    const string &getCabType() const;
+    void setCabType(const string &cabType);
+    const string &getIdentifier() const;
+    void setIdentifier(const string &identifier);
+    const string &getProdId() const;
+    void setProdId(const string &prodId);
+    double getSurgeMultiplier() const;
+    void setSurgeMultiplier(double surgeMultiplier);
+    double getTime() const;
+    void setTime(double time);
+    double getDistance() const;
+    void setDistance(double distance);
+    double getPrice() const;
+    void setPrice(double price);
+
+public:
+    void sortCab (vector<Cabs> cabRides, vector<Cabs> onlyUber, vector<Cabs> onlyLyft);
 
 };
 void Cabs::cabAtts() {
@@ -78,84 +58,6 @@ void Cabs::cabAtts() {
     time = 0.00;
     distance = 0.00;
     price = 0.00;
-}
-void Cabs::sortCab() {
-
-    cabAtts();
-    ifstream myfile1;
-    myfile1.open("cab_rides.csv", ios::in);
-
-    string line;
-
-    std::vector<Cabs> cabRides;
-    std::vector<Cabs> onlyUber;
-    std::vector<Cabs> onlyLyft;
-
-    int lineCount = 0;
-    getline(myfile1, line); // ignore header line
-
-    Cabs inv;
-
-    while (getline(myfile1, line) && !line.empty()) {
-        stringstream mystream(line);
-
-        string temp;
-
-
-        getline(mystream, temp, ',');
-        if (temp.empty()) {
-            temp = 0.000;
-        } else {
-            inv.distance = stod(temp);
-        }
-
-        getline(mystream, inv.cabBrand, ',');
-
-        getline(mystream, temp, ',');
-        if (temp.empty()) {
-            inv.time = 0.000;
-        } else {
-            inv.time = stod(temp);
-        }
-
-
-        getline(mystream, inv.cityDest, ',');
-        getline(mystream, inv.citySource, ',');
-
-        getline(mystream, temp, ',');
-        if (temp.empty()) {
-            inv.price = 0.000;
-        } else {
-            inv.price = stod(temp);
-        }
-
-        getline(mystream, temp, ',');
-        if (temp.empty()) {
-            inv.surgeMultiplier = 0.000;
-        } else {
-            inv.surgeMultiplier = stod(temp);
-        }
-
-        getline(mystream, inv.identifier, ',');
-        getline(mystream, inv.prod_id, ',');
-        getline(mystream, inv.cabType, ',');
-
-
-        if (!mystream) {
-            break;
-        }
-
-        cabRides.push_back(inv);
-        if (inv.cabBrand == "Lyft") {
-            onlyLyft.push_back(inv);
-        }
-        if (inv.cabBrand == "Uber") {
-            onlyUber.push_back(inv);
-        }
-
-
-        lineCount++;
-    }
 }
 
 const string &Cabs::getCitySource() const {
