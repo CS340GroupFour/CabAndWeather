@@ -1,6 +1,6 @@
 # CabAndWeather
 - [x] ~~Phase 1 **Deadline: Tuesday, March 30**~~
-- [ ] Phase 2 **Deadline: Tuesday, April 13**
+- [x] ~~Phase 2 **Deadline: Tuesday, April 13**~~
 - [ ] Phase 3 
   - [ ] Project Demo. **Deadline: Thursday, April 15**
   - [ ] Video summary. **Deadline: Monday, April 19**
