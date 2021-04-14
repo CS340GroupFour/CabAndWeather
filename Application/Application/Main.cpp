@@ -1,36 +1,18 @@
-#include <iostream>
-#include <fstream> //read and save to file
-#include <string>
+
+#include<iostream>
+#include<string>
+#include"UserInterface.h"
 #include "Statistics.h"
+
 
 int main()
 {
-	std::string cabRidePath = "./Data/cab_rides.txt";
-	std::string weatherPath = "./Data/weather.txt";
+    char userOption;
 
-	std::fstream cabRideStream;
-	std::fstream weatherStream;
+    UserInterface::WelcomeAndIntroduce();
 
-	std::string linestr; // Used to temporary store data from stream.
-
-	weatherStream.open(weatherPath);
-	cabRideStream.open(cabRidePath);
-
-	if (weatherStream.fail())  
-	{
-		std::cerr << "Failed to open the file: " << weatherPath << std::endl;
-		return(-1);
-	}
-
-	std::cout << "Success on opening the file: " << weatherPath << std::endl;
-
-	if (cabRideStream.fail())
-	{
-		std::cerr << "Failed to open the file: " << cabRideStream.fail() << std::endl;
-		return(-1);
-	}
-	std::cout << "Success on opening the file: " << cabRidePath << std::endl;
-
-
-	return 0;
+    userOption = UserInterface::PrintMenu(UserInterface::menuOptions);
+    UserInterface::CallMenuFunction(userOption);
+    userOption = UserInterface::PrintMenu(UserInterface::mathOptions);
+    UserInterface::CallMathFunction(userOption);
 }
