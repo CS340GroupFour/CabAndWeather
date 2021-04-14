@@ -6,7 +6,7 @@ namespace Statistics
 {
     double ComputeMean(int data[], int size)
     {
-        double result = 0.0;
+        long double result = 0.0;
 
         for (int i = 0; i < size; i++)
         {
@@ -15,12 +15,12 @@ namespace Statistics
 
         result = result / size;
 
-        return result;
+        return (double)result;
     }
 
     double ComputeMean(double data[], int size)
     {
-        double result = 0.0;
+        long double result = 0.0;
 
         for (int i = 0; i < size; i++)
         {
@@ -29,12 +29,12 @@ namespace Statistics
 
         result = result / size;
 
-        return result;
+        return (double)result;
     }
 
     double ComputeMean(std::vector<int> data)
     {
-        double result = 0.0;
+        long double result = 0.0;
 
         for (int i = 0; i < data.size(); i++)
         {
@@ -43,7 +43,7 @@ namespace Statistics
 
         result = result / data.size();
 
-        return result;
+        return (double) result;
     }
 
     double ComputeMean(std::vector<double> data)
@@ -64,7 +64,7 @@ namespace Statistics
     {
         // STD = sqrt( sum(xi - mean)^2  /  (n-1) )
         double result = 0.0;
-        double sum = 0.0;
+        long double sum = 0.0;
         double mean = ComputeMean(data, size);
 
         for (int i = 0; i < size; i++)
@@ -74,14 +74,14 @@ namespace Statistics
 
         result = sqrt(sum / (size - 1.0));
 
-        return result;
+        return (double)result;
     }
 
     double ComputeSTD(int data[], int size)
     {
         // STD = sqrt( sum(xi - mean)^2  /  (n-1) )
         double result = 0.0;
-        double sum = 0.0;
+        long double sum = 0.0;
         double mean = ComputeMean(data, size);
 
         for (int i = 0; i < size; i++)
@@ -91,14 +91,14 @@ namespace Statistics
 
         result = sqrt(sum / (size - 1.0));
 
-        return result;
+        return (double)result;
     }
 
     double ComputeSTD(std::vector<int> data)
     {
         // STD = sqrt( sum(xi - mean)^2  /  (n-1) )
         double result = 0.0;
-        double sum = 0.0;
+        long double sum = 0.0;
         double mean = ComputeMean(data);
 
         for (int i = 0; i < data.size(); i++)
@@ -108,14 +108,14 @@ namespace Statistics
 
         result = sqrt(sum / (data.size() - 1.0));
 
-        return result;
+        return (double)result;
     }
 
     double ComputeSTD(std::vector<double> data)
     {
         // STD = sqrt( sum(xi - mean)^2  /  (n-1) )
         double result = 0.0;
-        double sum = 0.0;
+        long double sum = 0.0;
         double mean = ComputeMean(data);
 
         for (int i = 0; i < data.size(); i++)
@@ -125,7 +125,7 @@ namespace Statistics
 
         result = sqrt(sum / (data.size() - 1.0));
 
-        return result;
+        return (double)result;
     }
 
     double Ttest(std::vector<double> left, std::vector<double> right)
