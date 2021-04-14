@@ -98,8 +98,17 @@ int main()
         if (!mystream)
             break;
 
-        cabRides.push_back(inv);
-        onlyUber.push_back(inv); 
+
+        cout << "testing: " << inv.cabType << endl; 
+        if (inv.cabType == "Lyft") {
+            cabRides.push_back(inv);
+        }
+        if (inv.cabType == "Uber") {
+            onlyUber.push_back(inv); 
+        }
+        
+
+
         lineCount++;
     }
 
