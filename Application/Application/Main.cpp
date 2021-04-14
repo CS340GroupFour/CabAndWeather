@@ -2,6 +2,7 @@
 #include <vector>
 #include <fstream>
 #include <sstream>
+#include <iostream>
 
 using namespace std;
 
@@ -18,22 +19,32 @@ struct Cabs{
     double price;
 };
 
+struct Weather{
+    string location;
+    double clouds;
+    double pressure;
+    double wind;
+    double temperature;
+    double rain;
+    double time;
+    double humidity;
+};
+
 int main()
 {
-    ifstream myfile;
-    //path file might need to be fixed
-    myfile.open("cab_rides.csv", ios::in);
+    ifstream myfile1;
+    myfile1.open("cab_rides.csv", ios::in);
 
     string line;
 
     std::vector<Cabs> cabRides;
 
     int lineCount = 0;
-    getline(myfile, line); // ignore header line
+    getline(myfile1, line); // ignore header line
 
     Cabs inv;
 
-    while (getline(myfile, line) && !line.empty())
+    while (getline(myfile1, line) && !line.empty())
     {
         stringstream mystream(line);
 
@@ -88,6 +99,96 @@ int main()
 
         cabRides.push_back(inv);
         lineCount++;
+    }
+
+    std::vector<Cabs> onlyUber;
+
+    for(int i = 0; i < cabRides.size(); i++){
+
+    }
+
+    ifstream myfile2;
+    myfile2.open("weather.csv", ios::in);
+
+    string line1;
+
+    std::vector<Weather> weather;
+
+    int lineCount1 = 0;
+    getline(myfile2, line1); // ignore header line
+
+    Weather inv1;
+
+    while (getline(myfile2, line1) && !line1.empty())
+    {
+        stringstream mystream1(line1);
+
+        string temp1;
+
+
+        getline(mystream1, temp1, ',');
+        if(temp1.empty()){
+            inv1.temperature = 0.000;
+        }
+        else{
+            inv1.temperature = stod(temp1);
+        }
+
+        getline(mystream1, inv1.location, ',');
+
+        getline(mystream1, temp1, ',');
+        if(temp1.empty()){
+            inv1.clouds = 0.000;
+        }
+        else {
+            inv1.clouds = stod(temp1);
+        }
+
+        getline(mystream1, temp1, ',');
+        if(temp1.empty()){
+            inv1.pressure = 0.000;
+        }
+        else {
+            inv1.pressure = stod(temp1);
+        }
+
+        getline(mystream1, temp1, ',');
+        if(temp1.empty()){
+            inv1.rain = 0.000;
+        }
+        else {
+            inv1.rain = stod(temp1);
+        }
+
+        getline(mystream1, temp1, ',');
+        if(temp1.empty()){
+            inv1.time = 0.000;
+        }
+        else {
+            inv1.time = stod(temp1);
+        }
+
+        getline(mystream1, temp1, ',');
+        if(temp1.empty()){
+            inv1.humidity = 0.000;
+        }
+        else {
+            inv1.humidity = stod(temp1);
+        }
+
+        getline(mystream1, temp1, ',');
+        if(temp1.empty()){
+            inv1.wind = 0.000;
+        }
+        else {
+            inv1.wind = stod(temp1);
+        }
+
+        if (!mystream1)
+            break;
+
+        weather.push_back(inv1);
+        lineCount1++;
     }
 
 
