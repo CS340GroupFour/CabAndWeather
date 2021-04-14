@@ -38,6 +38,7 @@ int main()
     string line;
 
     std::vector<Cabs> cabRides;
+    std::vector<Cabs> onlyUber;
 
     int lineCount = 0;
     getline(myfile1, line); // ignore header line
@@ -98,14 +99,23 @@ int main()
             break;
 
         cabRides.push_back(inv);
+        onlyUber.push_back(inv); 
         lineCount++;
     }
 
-    std::vector<Cabs> onlyUber;
 
+    cout << "Cab Rides: " << endl; 
     for(int i = 0; i < cabRides.size(); i++){
-
+         cout << "Cab Brands = " << cabRides[i].cabBrand << endl; 
     }
+
+    cout << "----------------" << endl; 
+
+    cout << "Only Uber: " << endl; 
+    for(int i = 0; i < onlyUber.size(); i++){
+            cout << "Uber Brands = " << onlyUber[i].cabBrand << endl; 
+    }
+
 
     ifstream myfile2;
     myfile2.open("weather.csv", ios::in);
@@ -189,6 +199,25 @@ int main()
 
         weather.push_back(inv1);
         lineCount1++;
+    }
+
+    for (int i = 0; i < weather.size(); i++) {
+        cout << "weather clouds: " << weather[i].clouds << endl; 
+        cout << "weather wind: " << weather[i].wind << endl; 
+        cout << "weather temperature: " << weather[i].temperature << endl;
+        cout << "weather rain: " << weather[i].rain << endl; 
+        cout << "weather time: " << weather[i].time << endl; 
+        cout << "weather humidity: " << weather[i].humidity << endl;
+        
+        //good weather
+        if (weather[i].rain < 0.25) {
+            
+            cout << "Average price: " << endl; 
+        }
+        //otherwise bad weather
+        else {
+            
+        }
     }
 
 
