@@ -26,7 +26,7 @@ struct Weather{
     double wind;
     double temperature;
     double rain;
-    double time;
+    double wtime;
     double humidity;
 };
 
@@ -98,34 +98,18 @@ int main()
         if (!mystream)
             break;
 
-
-        cout << "testing: " << inv.cabType << endl; 
-        if (inv.cabType == "Lyft") {
+        if (inv.cabBrand == "Lyft") {
             cabRides.push_back(inv);
         }
-        if (inv.cabType == "Uber") {
-            onlyUber.push_back(inv); 
+        if (inv.cabBrand == "Uber") {
+            onlyUber.push_back(inv);
         }
-        
+
 
 
         lineCount++;
     }
-
-
-    cout << "Cab Rides: " << endl; 
-    for(int i = 0; i < cabRides.size(); i++){
-         cout << "Cab Brands = " << cabRides[i].cabBrand << endl; 
-    }
-
-    cout << "----------------" << endl; 
-
-    cout << "Only Uber: " << endl; 
-    for(int i = 0; i < onlyUber.size(); i++){
-            cout << "Uber Brands = " << onlyUber[i].cabBrand << endl; 
-    }
-
-
+    
     ifstream myfile2;
     myfile2.open("weather.csv", ios::in);
 
@@ -181,10 +165,10 @@ int main()
 
         getline(mystream1, temp1, ',');
         if(temp1.empty()){
-            inv1.time = 0.000;
+            inv1.wtime = 0.000;
         }
         else {
-            inv1.time = stod(temp1);
+            inv1.wtime = stod(temp1);
         }
 
         getline(mystream1, temp1, ',');
@@ -211,21 +195,16 @@ int main()
     }
 
     for (int i = 0; i < weather.size(); i++) {
-        cout << "weather clouds: " << weather[i].clouds << endl; 
-        cout << "weather wind: " << weather[i].wind << endl; 
-        cout << "weather temperature: " << weather[i].temperature << endl;
-        cout << "weather rain: " << weather[i].rain << endl; 
-        cout << "weather time: " << weather[i].time << endl; 
-        cout << "weather humidity: " << weather[i].humidity << endl;
-        
+
+
         //good weather
         if (weather[i].rain < 0.25) {
-            
-            cout << "Average price: " << endl; 
+
+            cout << "Average price: " << endl;
         }
-        //otherwise bad weather
+            //otherwise bad weather
         else {
-            
+
         }
     }
 
