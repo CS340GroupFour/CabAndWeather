@@ -14,12 +14,12 @@ protected:
     double wind;
     double temperature;
     double rain;
-    double wtime;
+    long int wtime;
     double humidity;
 
 public:
     const string &getLocation() const;
-    void setLocation(const string &location);
+    void setLocation(const string &locatin);
     double getClouds() const;
     void setClouds(double clouds);
     double getPressure() const;
@@ -30,10 +30,9 @@ public:
     void setTemperature(double temperature);
     double getRain() const;
     void setRain(double rain);
-    double getWtime() const;
-    void setWtime(double wtime);
+    long int getWtime() const;
+    void setWtime(long int wtime);
     double getHumidity() const;
     void setHumidity(double humidity);
 };
-
 
