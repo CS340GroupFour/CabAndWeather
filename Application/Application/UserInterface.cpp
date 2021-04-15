@@ -361,25 +361,33 @@ void UserInterface::PerformOperation(MathOperation o, DataSample first, DataSamp
     std::vector<double> optionTwoPrice;
     std::vector<double> optionTwoDistance;
 
+    std::string fOption;
+    std::string sOption;
+
     switch(first)
     {
         case DataSample::Full:
+            fOption = "Full";
             optionOnePrice = fullDataPrice;
             optionOneDistance = fullDataDistance;
             break;
         case DataSample::Lyft:
+            fOption = "Lyft";
             optionOnePrice = lyftDataPrice;
             optionOneDistance = lyftDataDistance;
             break;
         case DataSample::Uber:
+            fOption = "Uber";
             optionOnePrice = uberDataPrice;
             optionOneDistance = uberDataDistance;
             break;
         case DataSample::GoodWeather:
+            fOption = "Good Weather";
             optionOnePrice = niceWeatherDataPrice;
             optionOneDistance = niceWeatherDataDistance;
             break;
         case DataSample::BadWeather:
+            fOption = "Bad Weather";
             optionOnePrice = badWeatherDataPrice;
             optionOneDistance = badWeatherDataDistance;
             break;
@@ -390,22 +398,27 @@ void UserInterface::PerformOperation(MathOperation o, DataSample first, DataSamp
     switch(second)
     {
         case DataSample::Full:
+            sOption = "Full";
             optionTwoPrice = fullDataPrice;
             optionTwoDistance = fullDataDistance;
             break;
         case DataSample::Lyft:
+            sOption = "Lyft";
             optionTwoPrice = lyftDataPrice;
             optionTwoDistance = lyftDataDistance;
             break;
         case DataSample::Uber:
+            sOption = "Uber";
             optionTwoPrice = uberDataPrice;
             optionTwoDistance = uberDataDistance;
             break;
         case DataSample::GoodWeather:
+            sOption = "Good Weather";
             optionTwoPrice = niceWeatherDataPrice;
             optionTwoDistance = niceWeatherDataDistance;
             break;
         case DataSample::BadWeather:
+            sOption = "Bad Weather";
             optionTwoPrice = badWeatherDataPrice;
             optionTwoDistance = badWeatherDataDistance;
             break;
@@ -420,7 +433,7 @@ void UserInterface::PerformOperation(MathOperation o, DataSample first, DataSamp
             firstMean = Statistics::ComputeMean(optionOnePrice);
             secondMean = Statistics::ComputeMean(optionOneDistance);
             std::cout << "You're trying to perform a one sample test:" << std::endl;
-            std::cout << "optionOne" << std::endl;
+            std::cout << fOption << std::endl;
             std::cout << "\thas the mean of the price: " << firstMean << std::endl;
             std::cout << "\thas the standard deviation of: " << Statistics::ComputeSTD(optionOnePrice) << std::endl;
             std::cout << "\thas the mean of the distance: " << secondMean << std::endl;
@@ -435,14 +448,14 @@ void UserInterface::PerformOperation(MathOperation o, DataSample first, DataSamp
             double sm = Statistics::ComputeMean(optionTwoDistance);
 
             std::cout << "You're trying to perform a two sample test:" << std::endl;
-            std::cout << "optionOne" << std::endl;
+            std::cout << fOption << std::endl;
             std::cout << "\thas the mean of the price: " << firstMean << std::endl;
             std::cout << "\thas the standard deviation of: " << Statistics::ComputeSTD(optionOnePrice) << std::endl;
             std::cout << "\thas the mean of the distance: " << secondMean << std::endl;
             std::cout << "\thas the standard deviation of: " << Statistics::ComputeSTD(optionOneDistance) << std::endl;
             std::cout << "\tThe average $/mile of: " << firstMean/secondMean << std::endl;
 
-            std::cout << "optionOne" << std::endl;
+            std::cout << sOption << std::endl;
             std::cout << "\thas the mean of the price: " << fm << std::endl;
             std::cout << "\thas the standard deviation of: " << Statistics::ComputeSTD(optionTwoPrice) << std::endl;
             std::cout << "\thas the mean of the distance: " << sm << std::endl;
