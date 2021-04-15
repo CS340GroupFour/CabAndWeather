@@ -9,10 +9,14 @@ int main()
 {
     char userOption;
 
-    UserInterface::WelcomeAndIntroduce();
+    uber lyft vector<cab>
+    good vector<cabAndWeather>
+    vector<cabwe>
 
-    userOption = UserInterface::PrintMenu(UserInterface::menuOptions);
-    UserInterface::CallMenuFunction(userOption);
-    userOption = UserInterface::PrintMenu(UserInterface::mathOptions);
-    UserInterface::CallMathFunction(userOption);
+    UserInterface ui(Full<cab>,uber<cab>,lyft<cab>,goodweather<cabAndWeather>, bad<cabAndWeather>);
+
+    ui.WelcomeAndIntroduce();
+
+    userOption = ui.PrintMenu(ui.introOptions);
+    ui.CallMainMenuFunction(userOption);
 }

@@ -1,5 +1,7 @@
 #include <string>
 #include <vector>
+#include "Cabs.h"
+#include "cabsAndWeather.h"
 // #include "Cabs.h"
 
 class UserInterface
@@ -23,19 +25,30 @@ class UserInterface
     UserInterface(); // Don't recommend using this. Should only be used for testing
 
     // TODO: Uncomment this after cabs is implemented properly
-    // UserInterface(vector<Cabs>& fullData, vector<Cabs>& uber, vector<Cabs>& lyft, vector<Cabs>& niceWeather, vector<Cabs>& badWeather);
+    UserInterface(std::vector<Cabs>& fullData, std::vector<Cabs>& uber, std::vector<Cabs>& lyft, std::vector<cabsAndWeather>& niceWeather, std::vector<cabsAndWeather>& badWeather);
 
     private:
     MathOperation userOperation;
     DataSample firstOption;
     DataSample secondOption;
+    std::vector<double> ConvertData(vector<Cabs>& cabs, vector<Double>& price, vector<Double>& distance);
+    std::vector<double> ConvertData(vector<cabAndWeather>& cnb, vector<Double>& price, vector<Double>& distance);
 
     // TODO:Uncomment this after Cabs is implemented properly
-    // std::vector<Cabs> fullData;
-    // std::vector<Cabs> uber;
-    // std::vector<Cabs> lyft;
-    // std::vector<Cabs> niceWeather;
-    // std::vector<Cabs> badWeather;
+    std::vector<double> fullDataPrice;
+    std::vector<double> fullDataDistance;
+
+    std::vector<double> uberDataPrice;
+    std::vector<double> uberDataDistance;
+
+    std::vector<double> lyftDataPrice;
+    std::vector<double> lyftDataDistance;
+
+    std::vector<double> niceWeatherDataPrice;
+    std::vector<double> niceWeatherDataDistance;
+
+    std::vector<double> badWeatherDataPrice;
+    std::vector<double> badWeatherDataDistance;
 };
 
 // Example1 Code:

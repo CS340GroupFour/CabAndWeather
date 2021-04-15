@@ -1,6 +1,8 @@
 #include <string>
 #include <iostream>
+#include <vector>
 #include "UserInterface.h"
+#include "Statistics.h"
 
 
 
@@ -34,6 +36,43 @@ UserInterface::UserInterface()
     userOperation = MathOperation::None;
     firstOption = DataSample::Empty;
     secondOption = DataSample::Empty;
+}
+
+UserInterface::UserInterface(std::vector<Cabs>& fullData, std::vector<Cabs>& uber, std::vector<Cabs>& lyft, std::vector<cabsAndWeather>& niceWeather, std::vector<cabsAndWeather>& badWeather)
+{
+    introOptions=
+    "1 - Introduction\n"
+    "2 - Learn about T test\n"
+    "3 - Perform calculation on sample\n"
+    "4 - About us\n"
+    "q - Quit\n";
+
+    sampleOptions= 
+    "1 - Full sample\n"
+    "2 - Uber sample\n"
+    "3 - Lyft sample\n"
+    "4 - Good weather sample\n"
+    "5 - Bad weather sample\n"
+    "q - Quit\n";
+
+    mathOptions =
+    "1 - Single sample\n"
+    "2 - 2 sample T-test\n"
+    "q - Quit\n";
+
+    mainMenuOrExit =
+    "1 - Main Menu\n"
+    "q - Quit\n";
+
+    userOperation = MathOperation::None;
+    firstOption = DataSample::Empty;
+    secondOption = DataSample::Empty;
+
+    ConvertData(fullData, fullDataPrice, fullDataDistance);
+    ConvertData(uber, uberDataPrice, uberDataDistance);
+    ConvertData(lyft, lyftDataPrice, lyftDataDistance);
+    ConvertData(niceWeather, niceWeatherDataPrice, niceWeatherDataDistance);
+    ConvertData(badWeather, badWeatherDataPrice, badWeatherDataDistance);
 }
 
 void UserInterface::WelcomeAndIntroduce()
@@ -298,25 +337,32 @@ void UserInterface::CallMainMenuOrExitFunction(char c)
 void UserInterface::PerformOperation(MathOperation o, DataSample first, DataSample second)
 {
     //example usage
-    std::string optionOne;
-    std::string optionTwo;
+    std::vector<double>& optionOnePrice;
+    std::vector<double>& optionOneDistance;
+    std::vector<double>& optionTwoPrice;
+    std::vector<double>& optionTwoDistance;
 
     switch(first)
     {
         case DataSample::Full:
-        optionOne = "Full";
+        optionOnePrice = fullDataPrice;
+        optionOnePrice = fullDataDistance;
         break;
         case DataSample::Lyft:
-        optionOne = "Lyft";
+        optionOnePrice = lyftDataPrice;
+        optionOnePrice = lyftDataDistance;
         break;
         case DataSample::Uber:
-        optionOne = "Uber";
+        optionOnePrice = uberDataPrice;
+        optionOnePrice = uberDataDistance;
         break;
         case DataSample::GoodWeather:
-        optionOne = "GoodWeather";
+        optionOnePrice = niceWeatherDataPrice;
+        optionOnePrice = niceWeatherDataDistance;
         break;
         case DataSample::BadWeather:
-        optionOne = "BadWeather";
+        optionOnePrice = badWeatherDataPrice;
+        optionOnePrice = badWeatherDataDistance;
         break;
         default:
         std::cout << "Error: Option 1 is empty." << std::endl;
@@ -325,22 +371,25 @@ void UserInterface::PerformOperation(MathOperation o, DataSample first, DataSamp
     switch(second)
     {
         case DataSample::Full:
-        optionTwo = "Full";
+        optionTwoPrice = fullDataPrice;
+        optionTwoPrice = fullDataDistance;
         break;
         case DataSample::Lyft:
-        optionTwo = "Lyft";
+        optionTwoPrice = lyftDataPrice;
+        optionTwoPrice = lyftDataDistance;
         break;
         case DataSample::Uber:
-        optionTwo = "Uber";
+        optionTwoPrice = uberDataPrice;
+        optionTwoPrice = uberDataDistance;
         break;
         case DataSample::GoodWeather:
-        optionTwo = "GoodWeather";
+        optionTwoPrice = niceWeatherDataPrice;
+        optionTwoPrice = niceWeatherDataDistance;
         break;
         case DataSample::BadWeather:
-        optionTwo = "BadWeather";
+        optionTwoPrice = badWeatherDataPrice;
+        optionTwoPrice = badWeatherDataDistance;
         break;
-        default:
-        std::cout << "Error: Option 1 is empty." << std::endl;
     }
 
     switch(o)
@@ -348,21 +397,50 @@ void UserInterface::PerformOperation(MathOperation o, DataSample first, DataSamp
         case MathOperation::OneSample:
         std::cout << "You're trying to perform a one sample test on " << optionOne << std::endl;
         std::cout << optionOne << std::endl;
-        std::cout << "\thas the mean of: " << "FIXME: Call the function"<< std::endl;
-        std::cout << "has the standard deviation of: " << "FIXME: Call the function"<< std::endl;
+        std::cout << "\thas the mean of the price: " << ComputeMean(optionOnePrice) << std::endl;
+        std::cout << "has the standard deviation of: " << ComputeSTD(optionOnePrice) << std::endl;
+        std::cout << "\thas the mean of the distance: " << ComputeMean(optionOneDistance) << std::endl;
+        std::cout << "has the standard deviation of: " << ComputeSTD(optionOneDistance) << std::endl;
         break;
         case MathOperation::TwoSample:
         std::cout << "You're trying to perform a two sample test on " << optionOne << " and " << optionTwo << std::endl;
         std::cout << optionOne << std::endl;
-        std::cout << "\thas the mean of: " << "FIXME: Call the function"<< std::endl;
-        std::cout << "\thas the standard deviation of: " << "FIXME: Call the function"<< std::endl;
+        std::cout << "\thas the mean of the price: " << ComputeMean(optionOnePrice) << std::endl;
+        std::cout << "has the standard deviation of: " << ComputeSTD(optionOnePrice) << std::endl;
+        std::cout << "\thas the mean of the distance: " << ComputeMean(optionOneDistance) << std::endl;
+        std::cout << "has the standard deviation of: " << ComputeSTD(optionOneDistance) << std::endl;
         std::cout << optionOne << std::endl;
-        std::cout << "\thas the mean of: " << "FIXME: Call the function"<< std::endl;
-        std::cout << "\thas the standard deviation of: " << "FIXME: Call the function"<< std::endl;
+        std::cout << "\thas the mean of the price: " << ComputeMean(optionOnePrice) << std::endl;
+        std::cout << "has the standard deviation of: " << ComputeSTD(optionOnePrice) << std::endl;
+        std::cout << "\thas the mean of the distance: " << ComputeMean(optionOneDistance) << std::endl;
+        std::cout << "has the standard deviation of: " << ComputeSTD(optionOneDistance) << std::endl;
+
+
         std::cout << "T test" << std::endl;
         printf("( mean(%s) - mean(%s) )/sqrt( std(%s)^2/size(%s) + std(%s)^2/size(%s) ) = ", optionOne.c_str(), optionTwo.c_str(),
          optionOne.c_str(), optionOne.c_str(), optionTwo.c_str(), optionTwo.c_str());
         std::cout << "FIXME: Call the function" << std::endl;
         break;
+    }
+}
+
+std::vector<double> UserInterface::ConvertData(vector<Cabs>& cabs, vector<Double>& price, vector<Double>& distance)
+{
+    price.clear();
+    distance.clear();
+    for(int i = 0; i < cabs.size(); i++)
+    {
+        price[i].push_back(cabs[i].getPrice());
+        distance[i].push_back(cabs[i].getDistance());
+    }
+}
+std::vector<double> UserInterface::ConvertData(vector<cabAndWeather>& cnb, vector<Double>& price, vector<Double>& distance)
+{
+    price.clear();
+    distance.clear();
+    for(int i = 0; i < cnb.size(); i++)
+    {
+        price[i].push_back(cnb[i].getXprice());
+        distance[i].push_back(cnb[i].getDistance());
     }
 }
