@@ -393,32 +393,48 @@ void UserInterface::PerformOperation(MathOperation o, DataSample first, DataSamp
 
     switch(o)
     {
+        double firstMean;
+        double secondMean;
+
         case MathOperation::OneSample:
-            std::cout << "You're trying to perform a one sample test on " << "optionOne" << std::endl;
+            firstMean = Statistics::ComputeMean(optionOnePrice);
+            secondMean = Statistics::ComputeMean(optionOneDistance);
+            std::cout << "You're trying to perform a one sample test:" << std::endl;
             std::cout << "optionOne" << std::endl;
-            std::cout << "\thas the mean of the price: " << Statistics::ComputeMean(optionOnePrice) << std::endl;
-            std::cout << "has the standard deviation of: " << Statistics::ComputeSTD(optionOnePrice) << std::endl;
-            std::cout << "\thas the mean of the distance: " << Statistics::ComputeMean(optionOneDistance) << std::endl;
-            std::cout << "has the standard deviation of: " << Statistics::ComputeSTD(optionOneDistance) << std::endl;
+            std::cout << "\thas the mean of the price: " << firstMean << std::endl;
+            std::cout << "\thas the standard deviation of: " << Statistics::ComputeSTD(optionOnePrice) << std::endl;
+            std::cout << "\thas the mean of the distance: " << secondMean << std::endl;
+            std::cout << "\thas the standard deviation of: " << Statistics::ComputeSTD(optionOneDistance) << std::endl;
+            std::cout << "\tThe average $/mile of: " << firstMean/secondMean << std::endl;
+
             break;
         case MathOperation::TwoSample:
-            std::cout << "You're trying to perform a two sample test on " << "optionOne" << " and " << "optionTwo" << std::endl;
+            firstMean = Statistics::ComputeMean(optionOnePrice);
+            secondMean = Statistics::ComputeMean(optionOneDistance);
+            double fm = Statistics::ComputeMean(optionTwoPrice);
+            double sm = Statistics::ComputeMean(optionTwoDistance);
+
+            std::cout << "You're trying to perform a two sample test:" << std::endl;
             std::cout << "optionOne" << std::endl;
-            std::cout << "\thas the mean of the price: " << Statistics::ComputeMean(optionOnePrice) << std::endl;
-            std::cout << "has the standard deviation of: " << Statistics::ComputeSTD(optionOnePrice) << std::endl;
-            std::cout << "\thas the mean of the distance: " << Statistics::ComputeMean(optionOneDistance) << std::endl;
-            std::cout << "has the standard deviation of: " << Statistics::ComputeSTD(optionOneDistance) << std::endl;
+            std::cout << "\thas the mean of the price: " << firstMean << std::endl;
+            std::cout << "\thas the standard deviation of: " << Statistics::ComputeSTD(optionOnePrice) << std::endl;
+            std::cout << "\thas the mean of the distance: " << secondMean << std::endl;
+            std::cout << "\thas the standard deviation of: " << Statistics::ComputeSTD(optionOneDistance) << std::endl;
+            std::cout << "\tThe average $/mile of: " << firstMean/secondMean << std::endl;
+
             std::cout << "optionOne" << std::endl;
-            std::cout << "\thas the mean of the price: " << Statistics::ComputeMean(optionOnePrice) << std::endl;
-            std::cout << "has the standard deviation of: " << Statistics::ComputeSTD(optionOnePrice) << std::endl;
-            std::cout << "\thas the mean of the distance: " << Statistics::ComputeMean(optionOneDistance) << std::endl;
-            std::cout << "has the standard deviation of: " << Statistics::ComputeSTD(optionOneDistance) << std::endl;
+            std::cout << "\thas the mean of the price: " << fm << std::endl;
+            std::cout << "\thas the standard deviation of: " << Statistics::ComputeSTD(optionTwoPrice) << std::endl;
+            std::cout << "\thas the mean of the distance: " << sm << std::endl;
+            std::cout << "\thas the standard deviation of: " << Statistics::ComputeSTD(optionTwoDistance) << std::endl;
+            std::cout << "\tThe average $/mile of: " << fm/sm << std::endl;
 
 
             std::cout << "T test" << std::endl;
             //printf("( mean(%s) - mean(%s) )/sqrt( std(%s)^2/size(%s) + std(%s)^2/size(%s) ) = ", optionOne.c_str(), optionTwo.c_str(),
                    //optionOne.c_str(), optionOne.c_str(), optionTwo.c_str(), optionTwo.c_str());
-            std::cout << "FIXME: Call the function" << std::endl;
+            std::cout << "\tPrice: " << Statistics::Ttest(optionOnePrice, optionTwoPrice) << std::endl;
+            std::cout << "\tDistance: " << Statistics::Ttest(optionOneDistance, optionTwoDistance) << std::endl;
             break;
     }
 }
