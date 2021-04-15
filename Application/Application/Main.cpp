@@ -47,7 +47,7 @@ void xcabWeatherIter(vector<cabAndWeather> const &a ){
 
 void getCab(vector<Cabs>& cabRides, vector<Cabs>& onlyUber, vector<Cabs>& onlyLyft){
     ifstream myfile1;
-    myfile1.open("..\\cab_rides.csv", ios::in);
+    myfile1.open("cab_rides.csv", ios::in);
     if(!myfile1.is_open()){
         cout << "You're a failure";
     }
@@ -62,7 +62,7 @@ void getCab(vector<Cabs>& cabRides, vector<Cabs>& onlyUber, vector<Cabs>& onlyLy
 }
 void getWeather(vector<Weather>& weather, vector<Weather>& badWeather, vector<Weather>& goodWeather){
     ifstream myfile2;
-    myfile2.open("..\\weather.csv", ios::in);
+    myfile2.open("weather.csv", ios::in);
     if(!myfile2.is_open()){
         cout << "You're a failure";
     }
@@ -119,12 +119,19 @@ int main()
 
     char userOption;
 
-    UserInterface ui;
+    UserInterface ui(cabRides, onlyUber, onlyLyft, cabGood, cabBad);
 
     ui.WelcomeAndIntroduce();
     userOption = ui.PrintMenu(ui.introOptions);
     ui.CallMainMenuFunction(userOption);
 
+
+
+
+
+
+
+    /*
     fusionCabWeather(cabRides, badWeather, cabBad);
     fusionCabWeather(cabRides, goodWeather, cabGood);
     fusionCabWeather(cabRides, weather, xCabAndWeather);
@@ -134,7 +141,7 @@ int main()
     fusionCabWeather(onlyUber, badWeather, cabGood);
     fusionCabWeather(onlyUber, goodWeather, cabGood);
     fusionCabWeather(onlyUber, weather, xCabAndWeather);
-
+     */
     //cabIter(cabRides);
     //weatherIter(weather);
     //xcabWeatherIter(xCabAndWeather);
