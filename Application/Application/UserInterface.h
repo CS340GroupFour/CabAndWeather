@@ -22,6 +22,13 @@ class UserInterface
     // UserInterface(vector<Cabs>& fullData, vector<Cabs>& uber, vector<Cabs>& lyft, vector<Cabs>& niceWeather, vector<Cabs>& badWeather);
 
     private:
+    enum MathOperation { OneSample, TwoSample, None};
+    enum DataSample {Full, Lyft, Uber, GoodWeather, BadWeather, Empty};
+
+    MathOperation userOperation;
+    DataSample firstOption;
+    DataSample secondOption;
+
     // TODO:Uncomment this after Cabs is implemented properly
     // std::vector<Cabs> fullData;
     // std::vector<Cabs> uber;

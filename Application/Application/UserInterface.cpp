@@ -30,6 +30,10 @@ UserInterface::UserInterface()
     mainMenuOrExit =
     "1 - Main Menu\n"
     "q - Quit\n";
+
+    userOperation = MathOperation::None;
+    firstOption = DataSample::Empty;
+    secondOption = DataSample::Empty;
 }
 
 void UserInterface::WelcomeAndIntroduce()
@@ -99,23 +103,129 @@ void UserInterface::CallMainMenuFunction(char c)
 }
 
 void UserInterface::CallSampleMenuFunction(char c)
-{   
+{
+    char userInput;   
     switch(c)
     {
         case '1':
-            std::cout << "FIXME: Calling Menu function 1" << std::endl;
+            if(userOperation == MathOperation::TwoSample)
+            {
+                if(firstOption == DataSample::Empty)
+                {
+                    firstOption = DataSample::Full;
+                    userInput = PrintMenu(sampleOptions);
+                    CallSampleMenuFunction(userInput);
+                }
+                else
+                {
+                    secondOption = DataSample::Full;
+                }
+            }
+            else if(userOperation == MathOperation::OneSample)
+            {
+                firstOption = DataSample::Full;
+                // TODO: Perform Operation here
+            }
+            else
+            {
+                std::cout << "Error:CallSampleMenuFunction" << std::endl;
+            }
             break;
         case '2':
-            std::cout << "FIXME: Calling Menu function 2" << std::endl;
+            if(userOperation == MathOperation::TwoSample)
+            {
+                if(firstOption == DataSample::Empty)
+                {
+                    firstOption = DataSample::Uber;
+                    userInput = PrintMenu(sampleOptions);
+                    CallSampleMenuFunction(userInput);
+                }
+                else
+                {
+                    secondOption = DataSample::Uber;
+                }
+            }
+            else if(userOperation == MathOperation::OneSample)
+            {
+                firstOption = DataSample::Uber;
+                // TODO: Perform Operation here
+            }
+            else
+            {
+                std::cout << "Error:CallSampleMenuFunction" << std::endl;
+            }
             break;
         case '3':
-            std::cout << "FIXME: Calling Menu function 3" << std::endl;
+            if(userOperation == MathOperation::TwoSample)
+            {
+                if(firstOption == DataSample::Empty)
+                {
+                    firstOption = DataSample::Lyft;
+                    userInput = PrintMenu(sampleOptions);
+                    CallSampleMenuFunction(userInput);
+                }
+                else
+                {
+                    secondOption = DataSample::Lyft;
+                }
+            }
+            else if(userOperation == MathOperation::OneSample)
+            {
+                firstOption = DataSample::Lyft;
+                // TODO: Perform Operation here
+            }
+            else
+            {
+                std::cout << "Error:CallSampleMenuFunction" << std::endl;
+            }
             break;
         case '4':
-            std::cout << "FIXME: Calling Menu function 4" << std::endl;
+            if(userOperation == MathOperation::TwoSample)
+            {
+                if(firstOption == DataSample::Empty)
+                {
+                    firstOption = DataSample::GoodWeather;
+                    userInput = PrintMenu(sampleOptions);
+                    CallSampleMenuFunction(userInput);
+                }
+                else
+                {
+                    secondOption = DataSample::GoodWeather;
+                }
+            }
+            else if(userOperation == MathOperation::OneSample)
+            {
+                firstOption = DataSample::GoodWeather;
+                // TODO: Perform Operation here
+            }
+            else
+            {
+                std::cout << "Error:CallSampleMenuFunction" << std::endl;
+            }
             break;
         case '5':
-            std::cout << "FIXME: Calling Menu function 5" << std::endl;
+            if(userOperation == MathOperation::TwoSample)
+            {
+                if(firstOption == DataSample::Empty)
+                {
+                    firstOption = DataSample::BadWeather;
+                    userInput = PrintMenu(sampleOptions);
+                    CallSampleMenuFunction(userInput);
+                }
+                else
+                {
+                    secondOption = DataSample::BadWeather;
+                }
+            }
+            else if(userOperation == MathOperation::OneSample)
+            {
+                firstOption = DataSample::BadWeather;
+                // TODO: Perform Operation here
+            }
+            else
+            {
+                std::cout << "Error:CallSampleMenuFunction" << std::endl;
+            }
             break;
         case 'q':
             std::cout << "Exiting the program" << std::endl;
@@ -129,10 +239,12 @@ void UserInterface::CallMathFunction(char c)
     switch(c)
     {
         case '1':
+            userOperation = MathOperation::OneSample;
             userInput = PrintMenu(sampleOptions);
             CallSampleMenuFunction(userInput);
             break;
         case '2':
+            userOperation = MathOperation::TwoSample;
             userInput = PrintMenu(sampleOptions);
             CallSampleMenuFunction(userInput);
             break;
