@@ -1,3 +1,5 @@
+#ifndef CABANDWEATHER_H
+#define CABANDWEATHER_H
 #include <string>
 #include <vector>
 #include <fstream>
@@ -33,3 +35,5 @@ public:
     double getDistance() const;
     void setDistance(double distance);
 };
+
+#endif
