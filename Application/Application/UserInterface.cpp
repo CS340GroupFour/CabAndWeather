@@ -31,6 +31,23 @@ UserInterface::UserInterface()
             "1 - Main Menu\n"
             "q - Quit\n";
 
+    introduction =
+            "Introduction: \n"
+            "\nHello everyone! We are Group 4 in the CSC340 class, and this all started during our\n"
+            "first meetings when we were deciding which data set to choose. We eventually chose the\n"
+            "Uber dataset and made a problem from this chosen dataset. When working on this project,\n"
+            "all of us were inspired by one thing and that is the due date. The due date pushes us to \n"
+            "work faster and helps us finish our code as soon as possible"
+            "\n1 - Main Menu\n"
+            "q - Quit\n";
+
+    about = 
+            "About Us: \n"
+            "\nWe are 5 college students just simply trying to pass this class, so don't blame us if we\n"
+            "use the math in our project incorrectly.\n"
+            "\n1 - Main Menu\n"
+            "q - Quit\n";
+
     userOperation = MathOperation::None;
     firstOption = DataSample::Empty;
     secondOption = DataSample::Empty;
@@ -114,7 +131,7 @@ void UserInterface::CallMainMenuFunction(char c)
     {
         case '1':
             std::cout << "FIXME: Calling Menu function 1" << std::endl;
-            userInput = PrintMenu(mainMenuOrExit);
+            userInput = PrintMenu(introduction);
             CallMainMenuOrExitFunction(userInput);
             break;
         case '2':
@@ -128,7 +145,7 @@ void UserInterface::CallMainMenuFunction(char c)
             break;
         case '4':
             std::cout << "FIXME: Calling Menu function 4" << std::endl;
-            userInput = PrintMenu(mainMenuOrExit);
+            userInput = PrintMenu(about);
             CallMainMenuOrExitFunction(userInput);
             break;
         case '5':

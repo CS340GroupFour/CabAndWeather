@@ -16,6 +16,8 @@ public:
     std::string sampleOptions;
     std::string mathOptions;
     std::string mainMenuOrExit;
+    std::string introduction;
+    std::string about;
     void WelcomeAndIntroduce();
     char PrintMenu(std::string options);
     bool IsValidMenuOption(char c);
