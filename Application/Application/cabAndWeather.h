@@ -12,6 +12,7 @@ protected:
     long int xtimes;
     double xrain;
     double xprice;
+    double distance;
     string xcabBrand;
     string xcabType;
     string sourceLocation;
@@ -29,4 +30,6 @@ public:
     void setXcabType(const string &xcabType);
     const string &getSourceLocation() const;
     void setSourceLocation(const string &sourceLocation);
+    double getDistance() const;
+    void setDistance(double distance);
 };
