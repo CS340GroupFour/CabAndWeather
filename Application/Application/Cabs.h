@@ -1,8 +1,12 @@
+#ifndef CABS_H
+#define CABS_H
 #include <string>
 #include <vector>
 #include <fstream>
 #include <sstream>
 #include <iostream>
+
+
 
 using namespace std;
 
@@ -42,3 +46,4 @@ public:
     void setPrice(double price);
 };
 
+#endif
