@@ -18,8 +18,8 @@ UserInterface::UserInterface()
     "1 - Full sample\n"
     "2 - Uber sample\n"
     "3 - Lyft sample\n"
-    "4 - Rainy weather sample\n"
-    "5 - Nice weather sample\n"
+    "4 - Good weather sample\n"
+    "5 - Bad weather sample\n"
     "q - Quit\n";
 
     mathOptions =
@@ -119,12 +119,13 @@ void UserInterface::CallSampleMenuFunction(char c)
                 else
                 {
                     secondOption = DataSample::Full;
+                    PerformOperation(userOperation,firstOption,secondOption);
                 }
             }
             else if(userOperation == MathOperation::OneSample)
             {
                 firstOption = DataSample::Full;
-                // TODO: Perform Operation here
+                PerformOperation(userOperation,firstOption,secondOption);
             }
             else
             {
@@ -143,12 +144,13 @@ void UserInterface::CallSampleMenuFunction(char c)
                 else
                 {
                     secondOption = DataSample::Uber;
+                    PerformOperation(userOperation,firstOption,secondOption);
                 }
             }
             else if(userOperation == MathOperation::OneSample)
             {
                 firstOption = DataSample::Uber;
-                // TODO: Perform Operation here
+                PerformOperation(userOperation,firstOption,secondOption);
             }
             else
             {
@@ -167,12 +169,13 @@ void UserInterface::CallSampleMenuFunction(char c)
                 else
                 {
                     secondOption = DataSample::Lyft;
+                    PerformOperation(userOperation,firstOption,secondOption);
                 }
             }
             else if(userOperation == MathOperation::OneSample)
             {
                 firstOption = DataSample::Lyft;
-                // TODO: Perform Operation here
+                PerformOperation(userOperation,firstOption,secondOption);
             }
             else
             {
@@ -191,12 +194,13 @@ void UserInterface::CallSampleMenuFunction(char c)
                 else
                 {
                     secondOption = DataSample::GoodWeather;
+                    PerformOperation(userOperation,firstOption,secondOption);
                 }
             }
             else if(userOperation == MathOperation::OneSample)
             {
                 firstOption = DataSample::GoodWeather;
-                // TODO: Perform Operation here
+                PerformOperation(userOperation,firstOption,secondOption);
             }
             else
             {
@@ -215,12 +219,13 @@ void UserInterface::CallSampleMenuFunction(char c)
                 else
                 {
                     secondOption = DataSample::BadWeather;
+                    PerformOperation(userOperation,firstOption,secondOption);
                 }
             }
             else if(userOperation == MathOperation::OneSample)
             {
                 firstOption = DataSample::BadWeather;
-                // TODO: Perform Operation here
+                PerformOperation(userOperation,firstOption,secondOption);
             }
             else
             {
@@ -287,5 +292,64 @@ void UserInterface::CallMainMenuOrExitFunction(char c)
         case 'q':
             std::cout << "Exiting the program" << std::endl;
             break;
+    }
+}
+
+void UserInterface::PerformOperation(MathOperation o, DataSample first, DataSample second)
+{
+    //example usage
+    std::string optionOne;
+    std::string optionTwo;
+
+    switch(first)
+    {
+        case DataSample::Full:
+        optionOne = "Full";
+        break;
+        case DataSample::Lyft:
+        optionOne = "Lyft";
+        break;
+        case DataSample::Uber:
+        optionOne = "Uber";
+        break;
+        case DataSample::GoodWeather:
+        optionOne = "GoodWeather";
+        break;
+        case DataSample::BadWeather:
+        optionOne = "BadWeather";
+        break;
+        default:
+        std::cout << "Error: Option 1 is empty." << std::endl;
+    }
+
+    switch(second)
+    {
+        case DataSample::Full:
+        optionTwo = "Full";
+        break;
+        case DataSample::Lyft:
+        optionTwo = "Lyft";
+        break;
+        case DataSample::Uber:
+        optionTwo = "Uber";
+        break;
+        case DataSample::GoodWeather:
+        optionTwo = "GoodWeather";
+        break;
+        case DataSample::BadWeather:
+        optionTwo = "BadWeather";
+        break;
+        default:
+        std::cout << "Error: Option 1 is empty." << std::endl;
+    }
+
+    switch(o)
+    {
+        case MathOperation::OneSample:
+        std::cout << "You're trying to perform a one sample test on " << optionOne << std::endl;
+        break;
+        case MathOperation::TwoSample:
+        std::cout << "You're trying to perform a two sample test on " << optionOne << " and " << optionTwo << std::endl;
+        break;
     }
 }

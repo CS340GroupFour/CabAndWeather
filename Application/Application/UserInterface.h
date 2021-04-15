@@ -5,6 +5,9 @@
 class UserInterface
 {
     public:
+    enum MathOperation { OneSample, TwoSample, None};
+    enum DataSample {Full, Lyft, Uber, GoodWeather, BadWeather, Empty};
+
     std::string introOptions;
     std::string sampleOptions;
     std::string mathOptions;
@@ -16,15 +19,13 @@ class UserInterface
     void CallSampleMenuFunction(char c);
     void CallMathFunction(char c);
     void CallMainMenuOrExitFunction(char c);
+    void PerformOperation(MathOperation o, DataSample first, DataSample second);
     UserInterface(); // Don't recommend using this. Should only be used for testing
 
     // TODO: Uncomment this after cabs is implemented properly
     // UserInterface(vector<Cabs>& fullData, vector<Cabs>& uber, vector<Cabs>& lyft, vector<Cabs>& niceWeather, vector<Cabs>& badWeather);
 
     private:
-    enum MathOperation { OneSample, TwoSample, None};
-    enum DataSample {Full, Lyft, Uber, GoodWeather, BadWeather, Empty};
-
     MathOperation userOperation;
     DataSample firstOption;
     DataSample secondOption;
