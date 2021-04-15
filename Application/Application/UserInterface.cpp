@@ -347,9 +347,22 @@ void UserInterface::PerformOperation(MathOperation o, DataSample first, DataSamp
     {
         case MathOperation::OneSample:
         std::cout << "You're trying to perform a one sample test on " << optionOne << std::endl;
+        std::cout << optionOne << std::endl;
+        std::cout << "\thas the mean of: " << "FIXME: Call the function"<< std::endl;
+        std::cout << "has the standard deviation of: " << "FIXME: Call the function"<< std::endl;
         break;
         case MathOperation::TwoSample:
         std::cout << "You're trying to perform a two sample test on " << optionOne << " and " << optionTwo << std::endl;
+        std::cout << optionOne << std::endl;
+        std::cout << "\thas the mean of: " << "FIXME: Call the function"<< std::endl;
+        std::cout << "\thas the standard deviation of: " << "FIXME: Call the function"<< std::endl;
+        std::cout << optionOne << std::endl;
+        std::cout << "\thas the mean of: " << "FIXME: Call the function"<< std::endl;
+        std::cout << "\thas the standard deviation of: " << "FIXME: Call the function"<< std::endl;
+        std::cout << "T test" << std::endl;
+        printf("( mean(%s) - mean(%s) )/sqrt( std(%s)^2/size(%s) + std(%s)^2/size(%s) ) = ", optionOne.c_str(), optionTwo.c_str(),
+         optionOne.c_str(), optionOne.c_str(), optionTwo.c_str(), optionTwo.c_str());
+        std::cout << "FIXME: Call the function" << std::endl;
         break;
     }
 }
