@@ -1,6 +1,7 @@
 #include "sortWeather.h"
 #include "sortCab.h"
 #include "cabAndWeather.h"
+#include "UserInterface.h"
 #include <string>
 #include <vector>
 #include <iostream>
@@ -17,7 +18,7 @@ ostream & operator<< (ostream& out, const Weather& w) {
     return out;
 }
 ostream & operator<< (ostream& out, const cabAndWeather& x) {
-    out << x.getXtimes() << " " << x.getSourceLocation() << " " << x.getXcabBrand() << " " << x.getXcabType() <<
+    out << " " << x.getDistance() << " " << x.getXtimes() << " " << x.getSourceLocation() << " " << x.getXcabBrand() << " " << x.getXcabType() <<
         " " << x.getXrain() << " " << x.getXprice() << endl;
     return out;
 }
@@ -77,18 +78,22 @@ void getWeather(vector<Weather>& weather, vector<Weather>& badWeather, vector<We
 void fusionCabWeather(vector<Cabs>& cabV, vector<Weather>& weatherV, vector<cabAndWeather>& cabXweather){
     cabAndWeather collX;
 
-    for(int i = 0; i < cabV.size(); i++){
-        for(int j = 0; j < weatherV.size(); j++){
-            if(cabV[i].getTime() == weatherV[j].getWtime()
-               && cabV[i].getCitySource() == weatherV[j].getLocation()){
-                collX.setXcabType(cabV[i].getCabType());
-                collX.setXcabBrand(cabV[i].getCabBrand());
-                collX.setXprice(cabV[i].getPrice());
-                collX.setXrain(weatherV[j].getRain());
-                collX.setXtimes(weatherV[j].getWtime());
-                collX.setSourceLocation(weatherV[j].getLocation());
+    cabXweather.clear();
+    if(cabXweather.empty()) {
+        for (int i = 0; i < cabV.size(); i++) {
+            for (int j = 0; j < weatherV.size(); j++) {
+                if (cabV[i].getTime() == weatherV[j].getWtime()
+                    && cabV[i].getCitySource() == weatherV[j].getLocation()) {
+                    collX.setDistance(cabV[i].getDistance());
+                    collX.setXcabType(cabV[i].getCabType());
+                    collX.setXcabBrand(cabV[i].getCabBrand());
+                    collX.setXprice(cabV[i].getPrice());
+                    collX.setXrain(weatherV[j].getRain());
+                    collX.setXtimes(weatherV[j].getWtime());
+                    collX.setSourceLocation(weatherV[j].getLocation());
 
-                cabXweather.push_back(collX);
+                    cabXweather.push_back(collX);
+                }
             }
         }
     }
@@ -103,13 +108,32 @@ int main()
     std::vector<Weather> badWeather;
     std::vector<Weather> goodWeather;
     std::vector<cabAndWeather> xCabAndWeather;
+    std::vector<cabAndWeather> cabBad;
+    std::vector<cabAndWeather> cabGood;
 
     getCab(cabRides, onlyUber, onlyLyft);
     getWeather(weather, badWeather, goodWeather);
-    //
+
     //FIXME: Depends on user input - must fix based on case
     // fusionCabWeather();
 
+    char userOption;
+
+    UserInterface ui;
+
+    ui.WelcomeAndIntroduce();
+    userOption = ui.PrintMenu(ui.introOptions);
+    ui.CallMainMenuFunction(userOption);
+
+    fusionCabWeather(cabRides, badWeather, cabBad);
+    fusionCabWeather(cabRides, goodWeather, cabGood);
+    fusionCabWeather(cabRides, weather, xCabAndWeather);
+    fusionCabWeather(onlyLyft, badWeather, cabBad);
+    fusionCabWeather(onlyLyft, goodWeather, cabBad);
+    fusionCabWeather(onlyLyft, weather, xCabAndWeather);
+    fusionCabWeather(onlyUber, badWeather, cabGood);
+    fusionCabWeather(onlyUber, goodWeather, cabGood);
+    fusionCabWeather(onlyUber, weather, xCabAndWeather);
 
     //cabIter(cabRides);
     //weatherIter(weather);
