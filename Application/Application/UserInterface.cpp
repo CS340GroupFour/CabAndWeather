@@ -345,23 +345,23 @@ void UserInterface::PerformOperation(MathOperation o, DataSample first, DataSamp
     {
         case DataSample::Full:
             optionOnePrice = fullDataPrice;
-            optionOnePrice = fullDataDistance;
+            optionOneDistance = fullDataDistance;
             break;
         case DataSample::Lyft:
             optionOnePrice = lyftDataPrice;
-            optionOnePrice = lyftDataDistance;
+            optionOneDistance = lyftDataDistance;
             break;
         case DataSample::Uber:
             optionOnePrice = uberDataPrice;
-            optionOnePrice = uberDataDistance;
+            optionOneDistance = uberDataDistance;
             break;
         case DataSample::GoodWeather:
             optionOnePrice = niceWeatherDataPrice;
-            optionOnePrice = niceWeatherDataDistance;
+            optionOneDistance = niceWeatherDataDistance;
             break;
         case DataSample::BadWeather:
             optionOnePrice = badWeatherDataPrice;
-            optionOnePrice = badWeatherDataDistance;
+            optionOneDistance = badWeatherDataDistance;
             break;
         default:
             std::cout << "Error: Option 1 is empty." << std::endl;
@@ -371,23 +371,23 @@ void UserInterface::PerformOperation(MathOperation o, DataSample first, DataSamp
     {
         case DataSample::Full:
             optionTwoPrice = fullDataPrice;
-            optionTwoPrice = fullDataDistance;
+            optionTwoDistance = fullDataDistance;
             break;
         case DataSample::Lyft:
             optionTwoPrice = lyftDataPrice;
-            optionTwoPrice = lyftDataDistance;
+            optionTwoDistance = lyftDataDistance;
             break;
         case DataSample::Uber:
             optionTwoPrice = uberDataPrice;
-            optionTwoPrice = uberDataDistance;
+            optionTwoDistance = uberDataDistance;
             break;
         case DataSample::GoodWeather:
             optionTwoPrice = niceWeatherDataPrice;
-            optionTwoPrice = niceWeatherDataDistance;
+            optionTwoDistance = niceWeatherDataDistance;
             break;
         case DataSample::BadWeather:
             optionTwoPrice = badWeatherDataPrice;
-            optionTwoPrice = badWeatherDataDistance;
+            optionTwoDistance = badWeatherDataDistance;
             break;
     }
 
