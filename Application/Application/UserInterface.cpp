@@ -158,12 +158,16 @@ void UserInterface::CallSampleMenuFunction(char c)
                 {
                     secondOption = DataSample::Full;
                     PerformOperation(userOperation,firstOption,secondOption);
+                    userInput = PrintMenu(mainMenuOrExit);
+                    CallMainMenuOrExitFunction(userInput);
                 }
             }
             else if(userOperation == MathOperation::OneSample)
             {
                 firstOption = DataSample::Full;
                 PerformOperation(userOperation,firstOption,secondOption);
+                userInput = PrintMenu(mainMenuOrExit);
+                CallMainMenuOrExitFunction(userInput);
             }
             else
             {
@@ -183,12 +187,16 @@ void UserInterface::CallSampleMenuFunction(char c)
                 {
                     secondOption = DataSample::Uber;
                     PerformOperation(userOperation,firstOption,secondOption);
+                    userInput = PrintMenu(mainMenuOrExit);
+                    CallMainMenuOrExitFunction(userInput);
                 }
             }
             else if(userOperation == MathOperation::OneSample)
             {
                 firstOption = DataSample::Uber;
                 PerformOperation(userOperation,firstOption,secondOption);
+                userInput = PrintMenu(mainMenuOrExit);
+                CallMainMenuOrExitFunction(userInput);
             }
             else
             {
@@ -208,12 +216,16 @@ void UserInterface::CallSampleMenuFunction(char c)
                 {
                     secondOption = DataSample::Lyft;
                     PerformOperation(userOperation,firstOption,secondOption);
+                    userInput = PrintMenu(mainMenuOrExit);
+                    CallMainMenuOrExitFunction(userInput);
                 }
             }
             else if(userOperation == MathOperation::OneSample)
             {
                 firstOption = DataSample::Lyft;
                 PerformOperation(userOperation,firstOption,secondOption);
+                userInput = PrintMenu(mainMenuOrExit);
+                CallMainMenuOrExitFunction(userInput);
             }
             else
             {
@@ -233,12 +245,16 @@ void UserInterface::CallSampleMenuFunction(char c)
                 {
                     secondOption = DataSample::GoodWeather;
                     PerformOperation(userOperation,firstOption,secondOption);
+                    userInput = PrintMenu(mainMenuOrExit);
+                    CallMainMenuOrExitFunction(userInput);
                 }
             }
             else if(userOperation == MathOperation::OneSample)
             {
                 firstOption = DataSample::GoodWeather;
                 PerformOperation(userOperation,firstOption,secondOption);
+                userInput = PrintMenu(mainMenuOrExit);
+                CallMainMenuOrExitFunction(userInput);
             }
             else
             {
@@ -258,12 +274,16 @@ void UserInterface::CallSampleMenuFunction(char c)
                 {
                     secondOption = DataSample::BadWeather;
                     PerformOperation(userOperation,firstOption,secondOption);
+                    userInput = PrintMenu(mainMenuOrExit);
+                    CallMainMenuOrExitFunction(userInput);
                 }
             }
             else if(userOperation == MathOperation::OneSample)
             {
                 firstOption = DataSample::BadWeather;
                 PerformOperation(userOperation,firstOption,secondOption);
+                userInput = PrintMenu(mainMenuOrExit);
+                CallMainMenuOrExitFunction(userInput);
             }
             else
             {
